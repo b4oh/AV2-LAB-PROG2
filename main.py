@@ -1,21 +1,27 @@
+from modules.prontuarios.menuProntuarios import menuProntuarios, cadastroProntuarios, exibirProntuarios, editarProntuarios, excluirProntuarios
+from modules.usuarios.menuLogin import menuLogin
 
-def menu():
-    print("--- Prontuario Eletrônico ---")
-    while True:
-        print("1 - Fazer login")
-        print("2 -  Cadastrar novo usuário")
-        print("3 - Sair")
-        escolha = input("Escolha uma opção: ")
+def main():
+    if menuLogin():  
+        print("Login feito!")
 
-        if escolha == "1":
-            if login():
-                print("Entrando no sistema!")
+        while True:
+            escolha = menuProntuarios()
+
+            if escolha == '1':
+                cadastroProntuarios()
+            elif escolha == '2':
+                exibirProntuarios()
+            elif escolha == '3':
+                editarProntuarios()
+            elif escolha == '4':
+                excluirProntuarios()
+            elif escolha == '5':
+                print("Saindo do sistema!")
                 break
-        elif escolha == "2":
-            cadastroUsuario()
-        elif escolha == "3":
-            print("Saindo.")
-        else:
-            print("Opção inválida.")
+            else:
+                print("Opção inválida! Tente novamente.")
+    else:
+        print("Sistema encerrado.")
 
-menu()
+main()
